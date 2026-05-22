@@ -540,9 +540,9 @@ mandaizoo-chatbot/
 ### Key Dependencies
 
 ```
-python-telegram-bot>=20.0
-google-generativeai>=0.8.0
-chromadb>=0.5.0
+python-telegram-bot>=22.7
+google-genai>=0.1.0
+chromadb>=0.5.9
 beautifulsoup4>=4.12.0
 requests>=2.31.0
 python-dotenv>=1.0.0
