@@ -580,6 +580,18 @@ Since mandai.com content changes (events, promotions, pricing), the scraper shou
 
 1. **Embedding model preference**: Go with Gemini `text-embedding-004` (better quality, uses your API quota) or ChromaDB's default local model (free, simpler)?
 
+---
+
+## 11. Proof of Concept & Future Deployment
+
+> [!NOTE]
+> This application is currently built as a **Proof of Concept (PoC)** to validate the RAG architecture, chunking strategy, and Gemini/Telegram integration using local execution and a local vector database (ChromaDB).
+
+As the project matures, the ideal deployment path is migrating to the edge using **Cloudflare**:
+- **Compute**: Migrate the Telegram bot webhook handler to a **Cloudflare Worker** (running Javascript/Typescript or via a Python-to-WASM bridge like Pyodide/Workers Python).
+- **Vector Storage**: Replace local ChromaDB with **Cloudflare Vectorize** to store embeddings globally at the edge.
+- **Bot Strategy**: Switch from long-polling (`run_polling()`) to a **Webhook** model, which fits perfectly into Cloudflare's serverless event-driven architecture, bringing costs down to virtually zero while maintaining instant response times.
+
 2. **Scraping depth**: Should we only scrape Singapore Zoo pages, or also include Night Safari, Bird Paradise, River Wonders? The mandai.com site covers all parks under one domain.
 
 3. **Conversation memory**: Should the bot remember previous messages in a session (multi-turn), or treat each message independently? Multi-turn adds complexity but enables follow-up questions.
